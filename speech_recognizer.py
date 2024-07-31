@@ -7,11 +7,9 @@ import os
 def record_audio(file_name, duration):
     fs = 44100
 
-    print("Recording...")
     recording = sounddevice.rec(int(duration * fs), samplerate=fs, channels=1, dtype='int16')
     sounddevice.wait()
     wavio.write(file_name, recording, fs, sampwidth=2)
-    print("Recording complete")
 
 
 def recognize_speech(file_name):
@@ -20,6 +18,7 @@ def recognize_speech(file_name):
         audio = recognizer.record(source)
         try:
             text = recognizer.recognize_google(audio)
+            print(f"You said: {text}")
             if os.path.exists(file_name):
                 os.remove(file_name)
             else:
