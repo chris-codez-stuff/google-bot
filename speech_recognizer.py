@@ -18,7 +18,6 @@ def recognize_speech(file_name):
         audio = recognizer.record(source)
         try:
             text = recognizer.recognize_google(audio)
-            print(f"You said: {text}")
             if os.path.exists(file_name):
                 os.remove(file_name)
             else:
